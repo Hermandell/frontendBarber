@@ -770,11 +770,11 @@
                   detallando tu proximo look
                 </p>
 
-                <form action="" class="appoin-form">
+                <form class="appoin-form">
                   <div class="input-wrapper">
                     <input
                       type="text"
-                      name="name"
+                      name="nombre"
                       placeholder="Nombre Completo"
                       required
                       class="input-field"
@@ -782,7 +782,7 @@
 
                     <input
                       type="email"
-                      name="email_address"
+                      name="email"
                       placeholder="Email"
                       required
                       class="input-field"
@@ -792,13 +792,13 @@
                   <div class="input-wrapper">
                     <input
                       type="text"
-                      name="phone"
+                      name="numerocell"
                       placeholder="Numero de telefono"
                       required
                       class="input-field"
                     />
 
-                    <select name="category" class="input-field">
+                    <select name="sucursal" class="input-field">
                       <option value="Selecciona la Sucursal">
                         Selecciona la Sucursal
                       </option>
@@ -816,20 +816,20 @@
 
                   <input
                     type="date"
-                    name="date"
+                    name="fecha"
                     required
                     class="input-field date"
                   />
 
                   <textarea
-                    name="message"
+                    name="descripcion"
                     placeholder="Detalles de tu reservacion"
                     required
                     class="input-field"
                   ></textarea>
                   <!-- Boton para el total -->
                   <div class="input-wrapper">
-                    <button onclick="total()" class="btn primary">
+                    <button id="btnTotal" class="btn primary">
                       Obtener Total
                     </button>
                     <label
@@ -887,10 +887,10 @@
               <span class="span">Hair Salon</span>
             </a>
 
-            <form action="" class="input-wrapper">
+            <form class="input-wrapper">
               <input
                 type="email"
-                name="email_address"
+                name="email"
                 placeholder="Envia tu Email"
                 required
                 class="email-field"

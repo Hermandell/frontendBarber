@@ -192,5 +192,89 @@ const total = () => {
   } else {
     document.getElementById("total").innerHTML = 0;
   }
+  return false;
 };
 
+// obtener total boton
+const totalNumber = document.getElementById("btnTotal");
+totalNumber.addEventListener("click", (e) => {
+  e.preventDefault();
+  const x = document.querySelectorAll('input[type="checkbox"]:checked');
+  console.log(x[0]);
+  let total = 0;
+  if (x.length > 0) {
+    for (let i = 0; i < x.length; i++) {
+      total += parseInt(x[i].value);
+    }
+    document.getElementById("total").innerHTML = total;
+    // console.log(total);
+  } else {
+    document.getElementById("total").innerHTML = 0;
+  }
+});
+
+
+
+//------------------Enviar  formulario de citas------------------
+//get data form
+const form = document.querySelectorAll("form")[0];
+form.addEventListener("submit", (e) => {
+  const x = document.querySelectorAll('input[type="checkbox"]:checked');
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData);
+  e.preventDefault();
+  //console.log(x[0]);
+  /* El código anterior suma los valores de los campos de entrada y muestra el total en el campo total. */
+  let total = 0;
+  if (x.length > 0) {
+    for (let i = 0; i < x.length; i++) {
+      total += parseInt(x[i].value);
+    }
+    // total to string
+    data.total = total.toString();
+  } else {
+    data.total = total.toString();
+    console.log(total);
+  }
+
+  console.log(data);
+  /* El código anterior está enviando una solicitud POST al servidor. */
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: data }),
+  };
+  fetch("http://localhost:1337/api/citas", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      alert("Cita agendada con exito");
+      console.log(result);
+      form.reset();
+    })
+    .catch((error) => console.log("error", error));
+});
+
+
+
+//-----------------Enviar Correo
+/* Este código está enviando una solicitud POST al servidor. */
+const formEmail = document.querySelectorAll("form")[1];
+formEmail.addEventListener("submit", (e) => {
+  e.preventDefault();
+  const formData = new FormData(formEmail);
+  const data = Object.fromEntries(formData);
+  console.log(data);
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ data: data }),
+  };
+  fetch("http://localhost:1337/api/correos", requestOptions)
+    .then((response) => response.json())
+    .then((result) => {
+      alert("Cita agendada con exito");
+      console.log(result);
+      formEmail.reset();
+    })
+    .catch((error) => console.log("error", error));
+});
